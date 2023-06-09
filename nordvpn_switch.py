@@ -190,11 +190,11 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
                         password = credentials.split("/")[1]
                     except IndexError:
                         error_login = input("\n\033[34mYou have provided your credentials in the wrong format. Press enter and please try again.\n"
-                              "Your input should look something like this: name@gmail.com/password\033[0m")
+                              "Your input should look something like this: token")
                     else:
                         login_needed = 0
             try:
-                login_nordvpn = check_output(["nordvpn","login","-username",login,"-password",password])
+                login_nordvpn = check_output(["nordvpn","login","--token", token])
             except subprocess.CalledProcessError:
                 raise Exception("\nSorry,something went wrong while trying to log in\n")
             if "Welcome" in str(login_nordvpn):
